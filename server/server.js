@@ -36,6 +36,15 @@ app.post('/notes',async (req,res)=>{
     res.json({note:note})
 })
 
+// Getting note with ID
+app.get('/notes/:id', async (req, res)=>{
+    // Get note with ID
+    const noteId =  req.params.id
+    const note = await Note.findById(noteId)
+    res.json({note:note})
+
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })
