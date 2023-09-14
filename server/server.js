@@ -3,12 +3,14 @@ if(process.env.NODE_ENV != "production"){
     require('dotenv').config
 }
 require('dotenv').config()
+const cors = require('cors');
 const express = require('express')
 const connectToDb = require('./config/connectToDb')
 const Note = require('./models/note')
 const { fetchNotes, fetchNote, createNote, updateNote, deleteNote } = require('./controllers/notesController')
 const app = express()
 const port = process.env.PORT || 8000
+app.use(cors());
 // follow url to understadn middleware and express.json() --> https://stackoverflow.com/questions/23259168/what-are-express-json-and-express-urlencoded
 app.use(express.json());
 
