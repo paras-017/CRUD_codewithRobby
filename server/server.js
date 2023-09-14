@@ -13,9 +13,15 @@ app.use(express.json())
 // connecting to mongoDB
 connectToDb()
 
-app.get('/', (req, res) => {
-  res.json({send:'Hello World!'})
+// Getting All Notes
+app.get('/notes', async(req, res) => {
+  // Find The note 
+  const notes = await Note.find({})
+  // Respond with them
+  res.json({notes: notes})
 })
+
+// ADDING NOTES
 app.post('/notes',async (req,res)=>{
     //Get the sent in data off request body
     const title = req.body.title
@@ -29,6 +35,7 @@ app.post('/notes',async (req,res)=>{
     // respond with new note
     res.json({note:note})
 })
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })
