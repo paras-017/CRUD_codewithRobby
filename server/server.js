@@ -45,6 +45,20 @@ app.get('/notes/:id', async (req, res)=>{
 
 })
 
+// FIND and UPDATE
+app.put('/notes/:id', async (req, res)=>{
+    //  Get the data to update with
+    const title = req.body.title
+    const body = req.body.body
+    // Get note with ID
+    const noteId =  req.params.id
+    const note = await Note.findByIdAndUpdate(noteId,{title:title,body:body},{ new: true })
+    
+    // Respond with it
+    res.json({note:note})
+
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })
