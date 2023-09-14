@@ -59,6 +59,14 @@ app.put('/notes/:id', async (req, res)=>{
 
 })
 
+// FIND and DELETE
+app.delete('/notes/:id', async (req,res)=>{
+  // Get the note 
+  const noteId = req.params.id
+  const note = await Note.findByIdAndDelete(noteId)
+  res.json({note:note})
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })
