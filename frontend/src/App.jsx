@@ -62,6 +62,7 @@ function App() {
     const noteIndex = notes.findIndex(note=>{
       return note._id === updateForm._id
     })
+    
     newNotes[noteIndex] = res.data.note
     setNotes(newNotes)
 
